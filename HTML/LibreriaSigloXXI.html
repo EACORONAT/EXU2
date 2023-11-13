@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="Estilos.css">
+    <title>Catalogo de Libros</title>    
+</head>
+<body>
+    <h1>Libreria Siglo XXI</h1>
+    <p>Listado de libros</p>
+
+    <!-- Campo de búsqueda -->
+    <p id="encabezado" for="tituloBusqueda">Título:</p>
+    <input type="text" id="tituloBusqueda">
+    <button onclick="buscarPorTitulo()">Buscar</button>
+
+    <table id="tablaDatos">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Capítulos</th>
+                <th>Páginas</th>
+                <th>Precio</th>                
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        function buscarPorTitulo() {
+            const tituloBusqueda = document.getElementById('tituloBusqueda').value;
+
+            // Hacer la solicitud fetch y manipular la respuesta
+            fetch(`http://localhost:5052/api/tituloBusqueda?tituloBusqueda=${encodeURIComponent(tituloBusqueda)}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Obtener la tabla
+                    const tabla = document.getElementById('tablaDatos').getElementsByTagName('tbody')[0];
+
+                    // Limpiar la tabla antes de agregar nuevos resultados
+                    tabla.innerHTML = '';
+
+                    // Iterar sobre los datos y agregar filas a la tabla
+                    data.forEach(Libro => {
+                        const fila = tabla.insertRow();
+                        const celdaTitulo = fila.insertCell(0);
+                        const celdaAutor = fila.insertCell(1);
+                        const celdaCapitulos = fila.insertCell(2);
+                        const celdaPaginas = fila.insertCell(3);
+                        const celdaPrecio = fila.insertCell(4);
+
+                        celdaTitulo.innerHTML = Libro.tituloLibro;
+                        celdaAutor.innerHTML = Libro.nombreAutor;
+                        celdaCapitulos.innerHTML = Libro.capitulosLibro;
+                        celdaPaginas.innerHTML = Libro.paginasLibro;
+                        celdaPrecio.innerHTML = Libro.precioLibro;
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al obtener datos:', error);
+                });
+        }
+
+        // Hacer la solicitud fetch y manipular la respuesta
+        fetch('http://localhost:5052/api/LibrosConAutores/todos')
+            .then(response => response.json())
+            .then(data => {
+                // Obtener la tabla
+                const tabla = document.getElementById('tablaDatos').getElementsByTagName('tbody')[0];
+
+                // Iterar sobre los datos y agregar filas a la tabla
+                data.forEach(Libro => {
+                    const fila = tabla.insertRow();
+                    const celdaTitulo = fila.insertCell(0);
+                    const celdaAutor = fila.insertCell(1);
+                    const celdaCapitulos = fila.insertCell(2);
+                    const celdaPaginas = fila.insertCell(3);
+                    const celdaPrecio = fila.insertCell(4);
+                    
+                    celdaTitulo.innerHTML = Libro.tituloLibro;
+                    celdaAutor.innerHTML = Libro.nombreAutor;
+                    celdaCapitulos.innerHTML = Libro.capitulosLibro;
+                    celdaPaginas.innerHTML = Libro.paginasLibro;
+                    celdaPrecio.innerHTML = Libro.precioLibro;
+                });
+            })
+            .catch(error => {
+                console.error('Error al obtener datos:', error);
+            });
+    </script>
+</body>
+</html>

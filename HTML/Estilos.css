@@ -1,0 +1,97 @@
+/* Estilos.css */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Century Gothic', sans-serif;
+    background-color: #eeeeee;
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+p {
+    font-size: 24px;
+    text-decoration: underline;
+    font-weight: normal;
+    margin: 1%;  
+}
+
+#encabezado{
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 1%;
+}
+
+#tablaDatos tbody strong {
+    font-weight: bold;
+}
+
+#tablaDatos {
+    border-collapse: collapse;
+    width: 80%;
+    margin-top: 20px;
+}
+
+#tablaDatos th {
+    border: 1px solid #000000;
+    text-align: center;
+    padding: 8px;
+}
+
+#tablaDatos th {
+    background-color: #eeeeee;
+}
+
+#tablaDatos td {
+    border: 1px solid #888888;
+    text-align: left;
+    padding: 8px;
+}
+
+#tablaDatos td {
+    background-color: #ffffff;
+}
+
+#tablaDatos tbody strong {
+    font-weight: bold;
+}
+
+#tituloBusqueda {
+    border-collapse: collapse;
+    width: 79%;
+    padding: 5px;
+    font-size: 15px;
+    font-family: 'Century Gothic', sans-serif; 
+}
+
+#busquedaContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+label[for="tituloBusqueda"] {
+    margin-right: 10px;
+}
+
+button {
+    width: 80%;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+    background-color: black;
+    padding: 8px;
+    border-radius: 3px;
+}
+
